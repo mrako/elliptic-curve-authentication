@@ -19,8 +19,12 @@ export const authMiddleware = async (ctx: any, next: any) => {
     ctx.throw(404, JSON.stringify({ error: 'Params missing' }));
   }
 
-  if (!verifySignature(body, key, signature)) {
-    ctx.throw(401, JSON.stringify({ error: 'Unauthorized' }));
+  try {
+    if (!verifySignature(body, key, signature)) {
+      ctx.throw(401, JSON.stringify({ error: 'Unauthorized' }));
+    }
+  } catch (err) {
+    ctx.throw(401, JSON.stringify({ error: 'Verification failed' }));
   }
 
   await next();
