@@ -6,8 +6,8 @@ import { eddsa as EdDSA } from 'elliptic';
 
 const ENDPOINT = process.env.ENDPOINT || 'http://localhost:9000';
 
-const key = 'HJkJwUuw26peqMiPtut7FFdFXmoqoM7F7HF8E7PLUaDM';
-const priv = 'D03A7C0204D92FB9AD83CEDF1B15D712570BDEBA1D0D5793814A2DC594F75D1D';
+const key = process.env.PUBLIC_KEY || '';
+const priv = process.env.PRIVATE_KEY || '';
 
 const format = (params: any) => {
   return Buffer.from(JSON.stringify(params)).toString('hex');
