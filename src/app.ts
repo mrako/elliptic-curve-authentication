@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
+import logger from 'koa-logger';
 
 import cors from 'kcors';
 
@@ -9,6 +10,7 @@ const port = process.env.PORT || 9000;
 
 const app = new Koa();
 
+app.use(logger());
 app.use(cors({ credentials: true }));
 app.use(bodyParser());
 
